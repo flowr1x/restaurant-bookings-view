@@ -1,0 +1,56 @@
+{
+  "available_days": ["2025-04-04", "2025-04-05", "2025-04-06", "2025-04-07", "2025-04-08"],
+  "current_day": "2025-04-04",
+  "restaurant": {
+    "id": 11100,
+    "timezone": "Asia/Vladivostok",
+    "restaurant_name": "Супра",
+    "opening_time": "11:00",
+    "closing_time": "23:40"
+  },
+  "tables": [
+    {
+      "id": "9a4971b5-5598-4a00-8b09-a0e2573d03aa",
+      "capacity": 4,
+      "number": "51",
+      "zone": "1 этаж",
+      "orders": [
+        {
+          "id": "8ed4dfd6-ed9b-4230-9399-e271d2ba00d0",
+          "status": "New",
+          "start_time": "2025-04-04T12:32:47.885+10:00",
+          "end_time": "2025-04-04T13:01:41.598+10:00"
+        }
+      ],
+      "reservations": [
+        {
+          "id": 1789,
+          "name_for_reservation": "Алина",
+          "num_people": 4,
+          "phone_number": "+79999999999",
+          "status": "Новая",
+          "seating_time": "2025-04-04T12:32:47.885+10:00",
+          "end_time": "2025-04-04T13:01:41.598+10:00"
+        }
+      ]
+    },
+    {
+      "id": "b2c3d4e5-6789-1a2b-3c4d-5e6f7a8b9c0d",
+      "capacity": 6,
+      "number": "20",
+      "zone": "Банкетный зал",
+      "orders": [],
+      "reservations": [
+        {
+          "id": 1790,
+          "name_for_reservation": "Игорь",
+          "num_people": 6,
+          "phone_number": "+78888888888",
+          "status": "Заявка",
+          "seating_time": "2025-04-04T19:00:00.000+10:00",
+          "end_time": "2025-04-04T22:00:00.000+10:00"
+        }
+      ]
+    }
+  ]
+}
