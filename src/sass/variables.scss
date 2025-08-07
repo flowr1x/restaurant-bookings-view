@@ -1,0 +1,13 @@
+:root {
+  --primary: #007aff;
+  --dark: #1b1b1d;
+  --gray: rgba(255, 255, 255, 0.08);
+  --white: white;
+
+  --h1-fz: 20px;
+
+  --btn-bg: var(--gray);
+  --btn-border-radius: 8px;
+  --btn-text-color: var(--white);
+  --btn-bg-hover: var(--primary);
+}

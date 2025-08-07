@@ -2,14 +2,14 @@ export type OrderStatus = 'New' | 'Bill' | 'Closed' | 'Banquet'
 export type ReservationStatus = 'Живая очередь' | 'Новая' | 'Заявка' | 'Открыт' | 'Закрыт'
 export type Zone = '1 этаж' | '2 этаж' | 'Банкетный зал'
 
-export interface Order {
+export type Order = {
   id: string
   status: OrderStatus
   start_time: string // ISO string with timezone
   end_time: string
 }
 
-export interface Reservation {
+export type Reservation = {
   id: number
   name_for_reservation: string
   num_people: number
@@ -19,7 +19,7 @@ export interface Reservation {
   end_time: string
 }
 
-export interface Table {
+export type Table = {
   id: string
   capacity: number
   number: string
@@ -28,7 +28,7 @@ export interface Table {
   reservations: Reservation[]
 }
 
-export interface Restaurant {
+export type Restaurant = {
   id: number
   timezone: string
   restaurant_name: string
@@ -36,7 +36,7 @@ export interface Restaurant {
   closing_time: string // "HH:mm"
 }
 
-export interface RestaurantData {
+export type RestaurantData = {
   available_days: string[]
   current_day: string
   restaurant: Restaurant

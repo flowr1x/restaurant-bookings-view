@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import { useBookingStore } from './stores/bookingStore'
-const bookingStore = useBookingStore()
-
-onMounted(() => bookingStore.loadData())
+import { RouterView } from 'vue-router'
 </script>
 
-<template>hello</template>
+<template>
+  <RouterView />
+</template>
 
 <style></style>
