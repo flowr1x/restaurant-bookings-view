@@ -42,3 +42,9 @@ export type RestaurantData = {
   restaurant: Restaurant
   tables: Table[]
 }
+
+export type AvailableDaysFormat = {
+  date: string
+  day: string
+  prefix: string
+}

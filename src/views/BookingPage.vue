@@ -10,5 +10,9 @@ console.log(bookingStore.availableDays)
 </script>
 
 <template>
-  <BookingControls :availableDays="bookingStore.availableDaysFormat" />
+  <BookingControls
+    :currentDay="bookingStore.selectedDate"
+    :availableDays="bookingStore.availableDaysFormat"
+    :zones="bookingStore.zoneFilters"
+  />
 </template>

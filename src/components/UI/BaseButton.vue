@@ -4,7 +4,7 @@
   <button type="button" class="btn"><slot></slot></button>
 </template>
 
-<style class="sass" scoped>
+<style lang="scss" scoped>
 .btn {
   padding: 4px 8px;
   display: inline-flex;
@@ -21,5 +21,8 @@
   .btn:hover {
     background-color: var(--btn-bg-hover);
   }
+}
+.btn.active {
+  background-color: var(--btn-bg-hover);
 }
 </style>

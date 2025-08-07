@@ -7,7 +7,7 @@ import { getDateLabel } from '@/utils/time.ts'
 export const useBookingStore = defineStore('bookingStore', () => {
   const restaurant = ref<RestaurantData>()
   const selectedDate = ref('')
-  const zoneFilters = ref<Zone[]>()
+  const zoneFilters = ref<Zone[]>([])
   const availableDays = ref<string[]>([])
 
   const availableDaysFormat = computed(() => {
@@ -20,6 +20,7 @@ export const useBookingStore = defineStore('bookingStore', () => {
     selectedDate.value = restaurant.value.current_day
     zoneFilters.value = [...new Set(restaurant.value.tables.map((t: Table) => t.zone))]
     availableDays.value = restaurant.value.available_days
+    selectedDate.value = restaurant.value.current_day
   }
 
   return {

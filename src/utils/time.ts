@@ -21,7 +21,8 @@ export function getDateLabel(dateStr: string): AvailableDaysFormat {
   }
 
   return {
-    data: getDayMonth(date),
+    date: dateStr,
+    day: getDayMonth(date),
     prefix,
   }
 }
