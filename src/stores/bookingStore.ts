@@ -39,8 +39,6 @@ export const useBookingStore = defineStore('bookingStore', () => {
   function toggleZone(currentZone: Zone) {
     const index = activeZones.value.indexOf(currentZone)
 
-    if (index !== -1 && activeZones.value.length === 1) return
-
     if (index !== -1) {
       activeZones.value.splice(index, 1)
     } else {
