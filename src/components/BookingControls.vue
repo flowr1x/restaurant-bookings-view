@@ -2,36 +2,48 @@
 import BaseButton from './UI/BaseButton.vue'
 import { defineProps } from 'vue'
 import type { Zone, AvailableDaysFormat } from '@/types'
+import { useBookingStore } from '@/stores/bookingStore'
 
 interface Props {
-  currentDay: string
+  selectedDate: string
   availableDays: AvailableDaysFormat[]
   zones: Zone[]
 }
 
 const props = defineProps<Props>()
+const bookingStore = useBookingStore()
+
+function changeDayBooking(currentDay: string) {
+  bookingStore.selectedDate = currentDay
+}
 </script>
 
 <template>
   <section class="section">
     <div class="container">
       <h1>Бронирование</h1>
-      <div class="block-btns block-btns__days">
-        <div class="block-btns__title">Дата</div>
-        <ul class="block-btns__list">
+      <div class="booking-btns booking-btns__days">
+        <div class="booking-btns__title">Дата</div>
+        <ul class="booking-btns__list">
           <li v-for="day in props.availableDays" :key="day.date">
-            <BaseButton :class="{ active: day.date === props.currentDay }">
+            <BaseButton
+              :class="{ active: day.date === props.selectedDate }"
+              @click="changeDayBooking(day.date)"
+            >
               <span class="text-semibold">{{ day.day }}</span>
               <span>{{ day.prefix }}</span>
             </BaseButton>
           </li>
         </ul>
       </div>
-      <div class="block-btns">
-        <div class="block-btns__title">Отображаемые зоны</div>
-        <ul class="block-btns__list">
+      <div class="booking-btns">
+        <div class="booking-btns__title">Отображаемые зоны</div>
+        <ul class="booking-btns__list">
           <li v-for="zone in props.zones" :key="zone">
-            <BaseButton>
+            <BaseButton
+              :class="{ active: bookingStore.isActiveZone(zone) }"
+              @click="bookingStore.toggleZone(zone)"
+            >
               <span>{{ zone }}</span>
             </BaseButton>
           </li>
@@ -45,7 +57,7 @@ const props = defineProps<Props>()
 .text-semibold {
   font-weight: 600;
 }
-.block-btns {
+.booking-btns {
   &__title {
     margin-bottom: 4px;
   }

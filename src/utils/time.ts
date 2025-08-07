@@ -1,8 +1,8 @@
 import type { AvailableDaysFormat } from '@/types'
 
-export function getDateLabel(dateStr: string): AvailableDaysFormat {
+export function getDateLabel(dateStr: string, todayStr: string): AvailableDaysFormat {
   const date = new Date(dateStr)
-  const today = new Date()
+  const today = new Date(todayStr)
 
   // обнуляем время
   today.setHours(0, 0, 0, 0)

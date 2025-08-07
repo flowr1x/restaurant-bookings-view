@@ -5,14 +5,12 @@ import BookingControls from '@/components/BookingControls.vue'
 const bookingStore = useBookingStore()
 
 onMounted(() => bookingStore.loadData())
-
-console.log(bookingStore.availableDays)
 </script>
 
 <template>
   <BookingControls
-    :currentDay="bookingStore.selectedDate"
+    :selectedDate="bookingStore.selectedDate"
     :availableDays="bookingStore.availableDaysFormat"
-    :zones="bookingStore.zoneFilters"
+    :zones="bookingStore.allZones"
   />
 </template>
