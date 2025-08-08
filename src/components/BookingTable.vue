@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
-import type { Table, Reservation } from '@/types'
-import { computed } from 'vue'
+import type { Table } from '@/types'
+
+import { useTimescale } from '@/composables/useTimescale'
+import { getReservationStyle } from '@/utils/getReservationStyle'
+import { useReservations } from '@/composables/useReservations'
 
 interface Props {
   tables: Table[]
@@ -12,79 +15,8 @@ interface Props {
 
 const props = defineProps<Props>()
 
-function generateTimeScale(open: string, close: string, step: number = 30): string[] {
-  const parseTime = (time: string) => {
-    const [hours, minutes] = time.split(':').map(Number)
-    return hours * 60 + minutes
-  }
-  const formatTime = (totalMinutes: number) => {
-    const hours = Math.floor(totalMinutes / 60)
-    const minutes = totalMinutes % 60
-    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`
-  }
-
-  const start = parseTime(open)
-  const end = parseTime(close)
-  const timeline: string[] = []
-
-  console.log(start, end)
-  for (let i = start; i <= end; i += step) {
-    timeline.push(formatTime(i))
-  }
-  timeline.pop()
-  return timeline
-}
-const timeline: string[] = generateTimeScale(props.openingTime, props.closingTime)
-
-const allReservations = computed(() => {
-  const res: Array<Reservation & { tableIndex: number }> = []
-  props.tables.forEach((table, index) => {
-    table.reservations.forEach((r) => {
-      res.push({
-        ...r,
-        tableIndex: index,
-      })
-    })
-  })
-  return res
-})
-
-const CELL_WIDTH = 80
-
-function parseTimeToMinutes(time: string): number {
-  const [hours, minutes] = time.split(':').map(Number)
-  return hours * 60 + minutes
-}
-
-function getReservationStyle(
-  reservation: Reservation & { tableIndex: number },
-  openingTime: string,
-  closingTime: string,
-) {
-  const widthFirstColumn = 32
-
-  const startTime = reservation.seating_time.slice(11, 16) // 'HH:mm' 15:50
-  const endTime = reservation.end_time.slice(11, 16) // 17:50
-
-  const openMinutes = parseTimeToMinutes(openingTime) // 660
-  const closeMinutes = parseTimeToMinutes(closingTime) // 1380
-  const totalMinutes = closeMinutes - openMinutes //  720
-
-  const startMinutes = parseTimeToMinutes(startTime) - openMinutes // 850 - 660 = 190
-  const endMinutes = parseTimeToMinutes(endTime) - openMinutes // 1070 - 660 = 410
-
-  const topPercent = (startMinutes / totalMinutes) * 100
-  const heightPercent = ((endMinutes - startMinutes) / totalMinutes) * 100
-
-  const left = reservation.tableIndex * CELL_WIDTH + widthFirstColumn
-
-  return {
-    top: `${topPercent}%`,
-    height: `${heightPercent}%`,
-    left: `${left}px`, // 40px имеет первый столбец
-    width: `${CELL_WIDTH}px`,
-  }
-}
+const timeline = useTimescale(props.openingTime, props.closingTime)
+const allReservations = useReservations(props.tables)
 </script>
 
 <template>
