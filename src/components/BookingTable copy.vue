@@ -105,100 +105,70 @@ function getReservationStyle(
     <div class="container">
       <div class="booking-table">
         <!-- Верхняя строка -->
-        <div class="table-header">
-          <div class=""></div>
+        <div class="grid header-row">
+          <div class="cell time-header"></div>
           <!-- Пустая ячейка -->
-          <div v-for="table in tables" :key="table.id" class="table-header__cell">
-            <div class="table-header__top">
-              <span class="table-header__number">{{ table.number }}</span>
-              <span class="table-header__capacity">{{ table.capacity }} чел</span>
-            </div>
-            <span class="table-header__zone">{{ table.zone }}</span>
+          <div v-for="table in tables" :key="table.id" class="cell table-header">
+            <span class="table-header__number">{{ table.number }}</span>
+            <span class="table-header__capacity">{{ table.capacity }}</span>
           </div>
         </div>
 
         <!-- Основная таблица -->
-        <div v-for="time in timeline" :key="time" class="time-row">
-          <div class="time-row__cell">{{ time }}</div>
-          <div v-for="table in tables" :key="table.id" class="booking-cell"></div>
+        <div v-for="time in timeline" :key="time" class="grid time-row">
+          <div class="cell time-cell">{{ time }}</div>
+          <div v-for="table in tables" :key="table.id" class="cell booking-cell"></div>
         </div>
         <!-- Отрисовка бронирований -->
-        <!-- <div
+        <div
           v-for="reservation in allReservations"
           :key="reservation.id"
           class="reservation"
           :style="getReservationStyle(reservation, openingTime, closingTime)"
         >
           {{ reservation.id }}
-        </div> -->
+        </div>
       </div>
     </div>
   </section>
 </template>
 
 <style lang="scss">
-  .booking-table {
-    position: relative;
+.booking-table {
+  position: relative;
+}
+.grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 80px;
+  white-space: nowrap;
+}
 
-  }
-  .table-header {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 80px;
-    white-space: nowrap;
-    &__cell {
-      padding: 4px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      display: flex;
-      flex-direction: column;
-      color: var(--text-color);
-      text-align: center;
-      padding: 7px;
-    }
-    &__top {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      margin-bottom: 4px;
-    }
-    &__number {
-      font-weight: 600;
-      font-size: 13px;
-      line-height: 20px;
-      color: var(--white);
-      &:before {
-        content: '#';
-        color: var(--text-color);
-        font-size: 11px;
-        line-height: 14px;
-        font-weight: 400;
-      }
-    }
-  }
-  .time-row {
-    min-height: 40px;
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 80px;
-    white-space: nowrap;
-    gap: 1px;
-    width: 100vw;
-    &__cell {
-      color: var(--text-color);
-      font-size: 11px;
-      line-height: 14px;
-        position: sticky;
-  left: 0;
-  z-index: 10;
-    }
-    
-  }
-  .booking-cell {
-    background-color: var(--dark);
-    outline: 1px solid rgba(255, 255,255,.16);
-  }
+.reservation {
+  position: absolute;
+  transition: background-color 0.2s ease;
+}
+.booking-cell {
+     box-shadow: 0 0 0 1px blue;
+}
+.header-row {
+  font-weight: bold;
+}
+
+.time-row {
+  min-height: 40px;
+}
+
+.cell {
+  padding: 4px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.time-cell {
+}
+
+.table-header {
+}
 </style>
