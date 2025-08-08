@@ -10,6 +10,8 @@ export const useBookingStore = defineStore('bookingStore', () => {
   const allZones = ref<Zone[]>([])
   const activeZones = ref<Zone[]>([])
   const availableDays = ref<string[]>([])
+  const CELL_WIDTH = ref(16)
+  const ROW__HEIGHT = ref(64)
 
   const availableDaysFormat = computed(() =>
     availableDays.value.map((date) =>
@@ -57,5 +59,7 @@ export const useBookingStore = defineStore('bookingStore', () => {
     toggleZone,
     isActiveZone,
     activeZones,
+    CELL_WIDTH,
+    ROW__HEIGHT,
   }
 })
