@@ -78,24 +78,14 @@ function getReservationStyle(
   const topPercent = (startMinutes / totalMinutes) * 100
   const heightPercent = ((endMinutes - startMinutes) / totalMinutes) * 100
 
-  const left = reservation.tableIndex * CELL_WIDTH
+  const left = (reservation.tableIndex + 1) * CELL_WIDTH
 
   return {
-    position: 'absolute',
     top: `${topPercent}%`,
     height: `${heightPercent}%`,
     left: `${left}px`,
     width: `${CELL_WIDTH}px`,
-    backgroundColor: '#4caf50',
-    color: 'white',
-    padding: '4px',
-    boxSizing: 'border-box',
-    borderRadius: '4px',
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis',
-    cursor: 'pointer',
-    zIndex: 10,
+
   }
 }
 </script>
@@ -104,10 +94,18 @@ function getReservationStyle(
   <section class="section">
     <div class="container">
       <div class="booking-table">
-        <!-- Верхняя строка -->
+        <!-- Отрисовка бронирований -->
+        <div
+          v-for="reservation in allReservations"
+          :key="reservation.id"
+          class="reservation"
+          :style="getReservationStyle(reservation, openingTime, closingTime)"
+        >
+          {{ reservation.id }}
+        </div>
+        <!-- Table Header -->
         <div class="table-header">
           <div class=""></div>
-          <!-- Пустая ячейка -->
           <div v-for="table in tables" :key="table.id" class="table-header__cell">
             <div class="table-header__top">
               <span class="table-header__number">{{ table.number }}</span>
@@ -122,15 +120,8 @@ function getReservationStyle(
           <div class="time-row__cell">{{ time }}</div>
           <div v-for="table in tables" :key="table.id" class="booking-cell"></div>
         </div>
-        <!-- Отрисовка бронирований -->
-        <!-- <div
-          v-for="reservation in allReservations"
-          :key="reservation.id"
-          class="reservation"
-          :style="getReservationStyle(reservation, openingTime, closingTime)"
-        >
-          {{ reservation.id }}
-        </div> -->
+
+
       </div>
     </div>
   </section>
@@ -139,7 +130,6 @@ function getReservationStyle(
 <style lang="scss">
   .booking-table {
     position: relative;
-
   }
   .table-header {
     display: grid;
@@ -185,20 +175,35 @@ function getReservationStyle(
     grid-auto-flow: column;
     grid-auto-columns: 80px;
     white-space: nowrap;
-    gap: 1px;
     width: 100vw;
     &__cell {
       color: var(--text-color);
       font-size: 11px;
       line-height: 14px;
-        position: sticky;
-  left: 0;
-  z-index: 10;
+      position: sticky;
+      left: 0;
+      z-index: 10;
     }
-    
+
+    .booking-cell {
+      &:not(:last-child) {
+        border-right: 1px solid var(--white);
+      }
+    }
+    &:not(:last-child) .booking-cell {
+      border-bottom: 1px solid var(--white);
+    }
+
   }
   .booking-cell {
     background-color: var(--dark);
-    outline: 1px solid rgba(255, 255,255,.16);
+    // border: 1px solid rgba(255, 255,255,.16);
   }
+  .reservation {
+    position: absolute;
+    background-color: #4caf50;
+    color: var(--white);
+    z-index: 10;
+  }
+  
 </style>
