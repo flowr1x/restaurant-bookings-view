@@ -1,5 +1,5 @@
 export type OrderStatus = 'New' | 'Bill' | 'Closed' | 'Banquet'
-export type ReservationStatus = 'Живая очередь' | 'Новая' | 'Заявка' | 'Открыт' | 'Закрыт'
+export type ReservationStatus = 'Живая очередь' | 'Новая' | 'Заявка' | 'Открыт' | 'Отменен'
 export type Zone = '1 этаж' | '2 этаж' | 'Банкетный зал'
 
 export type Order = {

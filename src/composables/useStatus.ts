@@ -18,7 +18,7 @@ export function useStatus(status: ReservationStatus): {
       text: 'В зале',
       selector: 'status-open',
     },
-    Закрыт: {
+    Отменен: {
       text: 'Отменен',
       selector: 'status-close',
     },

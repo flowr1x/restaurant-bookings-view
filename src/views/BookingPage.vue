@@ -20,5 +20,6 @@ onMounted(() => bookingStore.loadData())
     :selectedDate="bookingStore.selectedDate"
     :openingTime="'11:00'"
     :closingTime="'23:00'"
+    :activesZone="bookingStore.activeZones"
   />
 </template>

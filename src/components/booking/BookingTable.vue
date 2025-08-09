@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
-import type { Table } from '@/types'
+import { computed, defineProps } from 'vue'
+import type { Reservation, Table, Zone } from '@/types'
 import TableHeader from './TableHeader.vue'
 import ReservationBlock from './ReservationBlock.vue'
 import TimelineRow from './TimelineRow.vue'
+// import type { Reservation, Table } from '@/types'
 
 import { useTimescale } from '@/composables/useTimescale'
 import { useReservations } from '@/composables/useReservations'
@@ -13,12 +14,30 @@ interface Props {
   selectedDate: string
   openingTime: string
   closingTime: string
+  activesZone: Zone[]
 }
 
 const props = defineProps<Props>()
 
 const timeline = useTimescale(props.openingTime, props.closingTime)
-const allReservations = useReservations(props.tables)
+const eventFilterCurrentDate = computed(() => {
+  const tableCurrentDate: Array<Reservation & { tableIndex: number }> = []
+  props.tables.forEach((table, index) => {
+    table.reservations.forEach((reservation) => {
+      const dateReservation = reservation.seating_time.split('T')[0]
+
+      if (props.selectedDate === dateReservation && props.activesZone.includes(table.zone)) {
+        tableCurrentDate.push({
+          ...reservation,
+          tableIndex: index,
+        })
+      }
+    })
+  })
+  return tableCurrentDate
+})
+console.log(eventFilterCurrentDate.value)
+// const allReservations = useReservations(eventFilterCurrentDate)
 </script>
 
 <template>
@@ -30,7 +49,7 @@ const allReservations = useReservations(props.tables)
         <div class="booking-table__body">
           <!-- Отрисовка бронирований -->
           <ReservationBlock
-            v-for="reservation in allReservations"
+            v-for="reservation in eventFilterCurrentDate"
             :key="reservation.id"
             :reservation
             :openingTime
