@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import type { Table } from '@/types'
+import TableHeader from './TableHeader.vue'
+import ReservationBlock from './ReservationBlock.vue'
+import TimelineRow from './TimelineRow.vue'
 
 import { useTimescale } from '@/composables/useTimescale'
-import { getReservationStyle } from '@/utils/getReservationStyle'
 import { useReservations } from '@/composables/useReservations'
 
 interface Props {
@@ -24,33 +26,19 @@ const allReservations = useReservations(props.tables)
     <div class="container">
       <div class="booking-table">
         <!-- Header -->
-        <div class="table-header booking-table__header">
-          <div class=""></div>
-          <div v-for="table in tables" :key="table.id" class="table-header__cell">
-            <div class="table-header__top">
-              <span class="table-header__number">{{ table.number }}</span>
-              <span class="table-header__capacity">{{ table.capacity }} чел</span>
-            </div>
-            <span class="table-header__zone">{{ table.zone }}</span>
-          </div>
-        </div>
-
+        <TableHeader :tables />
         <!-- Основная таблица -->
         <div class="booking-table__body">
           <!-- Отрисовка бронирований -->
-          <div
+          <ReservationBlock
             v-for="reservation in allReservations"
             :key="reservation.id"
-            class="reservation"
-            :style="getReservationStyle(reservation, openingTime, closingTime)"
-          >
-            {{ reservation.id }}
-          </div>
+            :reservation
+            :openingTime
+            :closingTime
+          />
           <!-- Отрисовка сетки -->
-          <div v-for="time in timeline" :key="time" class="time-row">
-            <div class="time-row__cell">{{ time }}</div>
-            <div v-for="table in tables" :key="table.id" class="booking-cell"></div>
-          </div>
+          <TimelineRow v-for="time in timeline" :key="time" :tables :time />
         </div>
       </div>
     </div>

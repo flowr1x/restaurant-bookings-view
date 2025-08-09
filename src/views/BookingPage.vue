@@ -2,7 +2,7 @@
 import { onMounted } from 'vue'
 import { useBookingStore } from '@/stores/bookingStore'
 import BookingControls from '@/components/BookingControls.vue'
-import BookingTable from '@/components/BookingTable.vue'
+import BookingTable from '@/components/booking/BookingTable.vue'
 const bookingStore = useBookingStore()
 
 onMounted(() => bookingStore.loadData())
