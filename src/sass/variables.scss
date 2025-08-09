@@ -12,4 +12,24 @@
   --btn-border-radius: 8px;
   --btn-text-color: var(--white);
   --btn-bg-hover: var(--primary);
+
+  --reservation-border-radius: 4px;
+  --reservation-clr: #ff7043;
+
+  --reservation-live-clr: #007aff;
+
+  --reservation-status-default-bg: #007aff;
+  --reservation-status-default-text: var(--white);
+
+  --reservation-status-live-bg: #ffffff1f;
+  --reservation-status-live-text: var(--white);
+
+  --reservation-status-awaiting-bg: #0097fd1a;
+  --reservation-status-awaiting-text: #0097fd;
+
+  --reservation-status-hall-bg: #4ac99b52;
+  --reservation-status-hall-text: var(--white);
+
+  --reservation-status-cancel-bg: #ffffff1f;
+  --reservation-status-cancel-text: var(--white);
 }

@@ -16,4 +16,29 @@ const props = defineProps<Props>()
   </div>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss" scoped>
+.time-row {
+  min-height: 40px;
+  display: grid;
+  grid-template-columns: 32px;
+  grid-auto-flow: column;
+  grid-auto-columns: 80px;
+  white-space: nowrap;
+  &__cell {
+    color: var(--text-color);
+    font-size: 11px;
+    line-height: 14px;
+    position: sticky;
+    left: 0;
+    z-index: 10;
+  }
+
+  .booking-cell {
+    border-right: var(--booking-border);
+    border-top: var(--booking-border);
+  }
+}
+.booking-cell {
+  background-color: var(--dark);
+}
+</style>

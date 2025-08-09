@@ -21,4 +21,47 @@ const props = defineProps<Props>()
   </div>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss" scoped>
+.table-header {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 32px;
+  grid-auto-columns: 80px;
+  white-space: nowrap;
+  position: sticky;
+  top: 24px;
+  z-index: 999;
+  &__cell {
+    padding: 4px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: flex;
+    flex-direction: column;
+    color: var(--text-color);
+    text-align: center;
+    padding: 7px;
+  }
+  &__top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+  &__number {
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 20px;
+    color: var(--white);
+    &:before {
+      content: '#';
+      color: var(--text-color);
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 400;
+    }
+  }
+}
+</style>

@@ -25,7 +25,6 @@ const allReservations = useReservations(props.tables)
   <section class="section">
     <div class="container">
       <div class="booking-table">
-        <!-- Header -->
         <TableHeader :tables />
         <!-- Основная таблица -->
         <div class="booking-table__body">
@@ -54,79 +53,5 @@ const allReservations = useReservations(props.tables)
   &__body {
     position: relative;
   }
-  &__header {
-    position: sticky;
-    top: 24px;
-    z-index: 999;
-  }
-}
-.table-header {
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: 32px;
-  grid-auto-columns: 80px;
-  white-space: nowrap;
-  &__cell {
-    padding: 4px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    display: flex;
-    flex-direction: column;
-    color: var(--text-color);
-    text-align: center;
-    padding: 7px;
-  }
-  &__top {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    margin-bottom: 4px;
-  }
-  &__number {
-    font-weight: 600;
-    font-size: 13px;
-    line-height: 20px;
-    color: var(--white);
-    &:before {
-      content: '#';
-      color: var(--text-color);
-      font-size: 11px;
-      line-height: 14px;
-      font-weight: 400;
-    }
-  }
-}
-.time-row {
-  min-height: 40px;
-  display: grid;
-  grid-template-columns: 32px;
-  grid-auto-flow: column;
-  grid-auto-columns: 80px;
-  white-space: nowrap;
-  &__cell {
-    color: var(--text-color);
-    font-size: 11px;
-    line-height: 14px;
-    position: sticky;
-    left: 0;
-    z-index: 10;
-  }
-
-  .booking-cell {
-    border-right: var(--booking-border);
-    border-top: var(--booking-border);
-  }
-}
-.booking-cell {
-  background-color: var(--dark);
-}
-.reservation {
-  position: absolute;
-  background-color: #4caf50;
-  color: var(--white);
-  z-index: 10;
 }
 </style>

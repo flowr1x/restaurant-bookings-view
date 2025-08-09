@@ -48,3 +48,12 @@ export type AvailableDaysFormat = {
   day: string
   prefix: string
 }
+
+export type ReservationStatusShow = 'Живая очередь' | 'Ожидает подтверждения' | 'Ожидаем' | 'В зале' | 'Отменен'
+export type ReservationStatusInfo = {
+  text: ReservationStatusShow
+  selector: string
+}
+export type StatusClasses = {
+  [key in ReservationStatus]: ReservationStatusInfo
+}

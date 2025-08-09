@@ -8,13 +8,17 @@ function parseTimeToMinutes(time: string): number {
   return hours * 60 + minutes
 }
 
+export function getTime(time: string): string {
+  return time.slice(11, 16)
+}
+
 export function getReservationStyle(
   reservation: Reservation & { tableIndex: number },
   openingTime: string,
   closingTime: string,
 ) {
-  const startTime = reservation.seating_time.slice(11, 16) // 'HH:mm' 15:50
-  const endTime = reservation.end_time.slice(11, 16) // 17:50
+  const startTime = getTime(reservation.seating_time) // 'HH:mm' 15:50
+  const endTime = getTime(reservation.end_time) // 17:50
 
   const openMinutes = parseTimeToMinutes(openingTime) // 660
   const closeMinutes = parseTimeToMinutes(closingTime) // 1380
