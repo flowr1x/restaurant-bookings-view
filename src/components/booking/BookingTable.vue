@@ -20,23 +20,20 @@ interface Props {
 const props = defineProps<Props>()
 
 const timeline = useTimescale(props.openingTime, props.closingTime)
-const eventFilterCurrentDate = computed(() => {
-  const tableCurrentDate: Array<Reservation & { tableIndex: number }> = []
-  props.tables.forEach((table, index) => {
-    table.reservations.forEach((reservation) => {
-      const dateReservation = reservation.seating_time.split('T')[0]
-
-      if (props.selectedDate === dateReservation && props.activesZone.includes(table.zone)) {
-        tableCurrentDate.push({
-          ...reservation,
-          tableIndex: index,
+const eventFilterCurrentDateAndZone = computed(() =>
+  props.tables
+    .map((table, index) => {
+      return table.reservations
+        .filter((reservation) => {
+          const date = reservation.seating_time.split('T')[0]
+          return date === props.selectedDate && props.activesZone.includes(table.zone)
         })
-      }
+        .sort((a, b) => (a.seating_time > b.seating_time ? 1 : -1))
+        .map((reservation) => ({ ...reservation, tableIndex: index }))
     })
-  })
-  return tableCurrentDate
-})
-console.log(eventFilterCurrentDate.value)
+    .flat(),
+)
+console.log(eventFilterCurrentDateAndZone.value)
 // const allReservations = useReservations(eventFilterCurrentDate)
 </script>
 
@@ -49,7 +46,7 @@ console.log(eventFilterCurrentDate.value)
         <div class="booking-table__body">
           <!-- Отрисовка бронирований -->
           <ReservationBlock
-            v-for="reservation in eventFilterCurrentDate"
+            v-for="reservation in eventFilterCurrentDateAndZone"
             :key="reservation.id"
             :reservation
             :openingTime

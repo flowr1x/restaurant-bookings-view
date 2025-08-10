@@ -34,13 +34,18 @@ const { currentStatus } = useStatus(props.reservation.status)
   color: var(--white);
   z-index: 10;
   border-radius: var(--reservation-border-radius);
-
   padding: 2px 6px;
   overflow: hidden;
 
   @media screen and (hover: hover) {
     &:hover {
       width: max-content !important;
+      backdrop-filter: blur(2px);
+      z-index: 999;
+    }
+
+    &:hover:after {
+      filter: blur(10px);
     }
   }
   &:before {
@@ -60,6 +65,7 @@ const { currentStatus } = useStatus(props.reservation.status)
     height: 100%;
     background-color: var(--reservation-clr);
     opacity: 0.16;
+
     position: absolute;
     top: 0;
     left: 0;
