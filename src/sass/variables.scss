@@ -1,4 +1,5 @@
 :root {
+  /* === Тёмная тема (по умолчанию) === */
   --primary: #007aff;
   --dark: #1b1b1d;
   --gray: rgba(255, 255, 255, 0.08);
@@ -33,5 +34,44 @@
   --reservation-status-hall-text: var(--white);
 
   --reservation-status-cancel-bg: #ffffff1f;
+  --reservation-status-cancel-text: var(--white);
+}
+
+html:not(.dark ){
+  /* === Светлая тема === */
+  --primary: #007aff; /* можно оставить тот же */
+  --dark: #f0f0f0; /* светлый фон для "темного" цвета */
+  --gray: rgba(0, 0, 0, 0.08);
+  --white: #1b1b1d; /* заменяем белый на тёмный для текста */
+
+  --h1-fz: 20px;
+
+  --text-color: rgba(0, 0, 0, 0.64);
+
+  --header-bg: var(--gray);
+
+  --btn-bg: var(--gray);
+  --btn-border-radius: 8px;
+  --btn-text-color: var(--white);
+  --btn-bg-hover: var(--primary);
+
+  --reservation-border-radius: 4px;
+  --reservation-clr: #ff7043;
+
+  --reservation-live-clr: #007aff;
+
+  --reservation-status-default-bg: #007aff;
+  --reservation-status-default-text: var(--white);
+
+  --reservation-status-live-bg: #0000001f; /* светлый аналог */
+  --reservation-status-live-text: var(--white);
+
+  --reservation-status-awaiting-bg: #0097fd1a;
+  --reservation-status-awaiting-text: #0097fd;
+
+  --reservation-status-hall-bg: #4ac99b52;
+  --reservation-status-hall-text: var(--white);
+
+  --reservation-status-cancel-bg: #0000001f; /* светлый аналог */
   --reservation-status-cancel-text: var(--white);
 }
