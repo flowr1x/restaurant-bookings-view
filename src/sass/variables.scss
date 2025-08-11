@@ -35,9 +35,17 @@
 
   --reservation-status-cancel-bg: #ffffff1f;
   --reservation-status-cancel-text: var(--white);
+  --booking-border: 1px solid rgba(255, 255, 255, 0.16);
+
+  --input-bg: var(--dark);
+  --input-text: var(--white);
+  --input-text-placeholder: var(--text-color);
+  --input-text-fz: 11px;
+  --input-border: 1px solid rgba(255, 255, 255, 0.16);
+  --input-border-radius: 8px;
 }
 
-html:not(.dark ){
+html:not(.dark) {
   /* === Светлая тема === */
   --primary: #007aff; /* можно оставить тот же */
   --dark: #f0f0f0; /* светлый фон для "темного" цвета */
@@ -74,4 +82,6 @@ html:not(.dark ){
 
   --reservation-status-cancel-bg: #0000001f; /* светлый аналог */
   --reservation-status-cancel-text: var(--white);
+
+  --booking-border: 1px solid rgba(0, 0, 0, 0.16);
 }

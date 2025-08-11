@@ -50,11 +50,9 @@ const { eventFilterCurrentDateAndZone } = useReservations(
 </template>
 
 <style lang="scss">
-:root {
-  --booking-border: 1px solid rgba(255, 255, 255, 0.16);
-}
 .booking-table {
   position: relative;
+  overflow: auto;
   &__body {
     position: relative;
   }
