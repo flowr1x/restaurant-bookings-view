@@ -13,7 +13,12 @@ export function getTime(time: string): string {
 }
 
 export function getReservationStyle(
-  reservation: Reservation & { tableIndex: number },
+  reservation: Reservation & {
+    tableIndex: number
+    column: number
+    columnIndex: number
+    offset: number
+  },
   openingTime: string,
   closingTime: string,
 ) {
@@ -30,12 +35,15 @@ export function getReservationStyle(
   const topPercent = (startMinutes / totalMinutes) * 100
   const heightPercent = ((endMinutes - startMinutes) / totalMinutes) * 100
 
-  const left = reservation.tableIndex * CELL_WIDTH + WIDTH_FIRST_COLUMN
+  const columnWidth = CELL_WIDTH / reservation.column
+  const baseLeft = reservation.tableIndex * CELL_WIDTH + WIDTH_FIRST_COLUMN
+  const left = baseLeft + columnWidth * reservation.columnIndex + reservation.offset
 
+  const width = columnWidth - reservation.offset
   return {
     top: `${topPercent}%`,
     height: `${heightPercent}%`,
     left: `${left}px`, // 32px имеет первый столбец
-    width: `${CELL_WIDTH}px`,
+    width: `${width}px`,
   }
 }

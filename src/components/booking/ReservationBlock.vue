@@ -5,7 +5,12 @@ import { getReservationStyle, getTime } from '@/utils/getReservationStyle'
 import { useStatus } from '@/composables/useStatus'
 
 interface Props {
-  reservation: Reservation & { tableIndex: number }
+  reservation: Reservation & {
+    tableIndex: number
+    column: number
+    columnIndex: number
+    offset: number
+  }
   openingTime: string
   closingTime: string
 }
