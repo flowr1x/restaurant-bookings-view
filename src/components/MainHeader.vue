@@ -1,11 +1,4 @@
-<script lang="ts" setup>
-import ToggleDark from './UI/ToggleDark.vue'
-import MainIcon from './UI/MainIcon.vue'
-import ButtonIcon from './UI/ButtonIcon.vue'
-import BaseInput from './UI/BaseInput.vue'
-import InputGroup from './UI/InputGroup.vue'
-import InputGroupAddon from './UI/InputGroupAddon.vue'
-</script>
+<script lang="ts" setup></script>
 <template>
   <header class="header">
     <div class="container header__container">

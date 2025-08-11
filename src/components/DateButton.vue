@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import BaseButton from './UI/BaseButton.vue'
 import { defineProps } from 'vue'
 import type { AvailableDaysFormat } from '@/types'
 import { useBookingStore } from '@/stores/bookingStore'

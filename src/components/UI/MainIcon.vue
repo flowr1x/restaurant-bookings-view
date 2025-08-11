@@ -13,7 +13,6 @@ const iconComponent = computed(() => {
 
   return icons[fileName]?.default || null
 })
-console.log(iconComponent.value)
 </script>
 
 <template>
