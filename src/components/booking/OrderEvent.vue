@@ -45,16 +45,12 @@ const { currentStatus } = useStatusOrder(orderMeta.value?.status)
   border-radius: var(--order-border-radius);
   padding: 2px 6px;
   overflow: hidden;
-
+  transition: color 0.3s;
   @media screen and (hover: hover) {
     &:hover {
       width: max-content !important;
       backdrop-filter: blur(2px);
       z-index: 999 !important;
-    }
-
-    &:hover:after {
-      filter: blur(10px);
     }
   }
   &:before {
@@ -66,6 +62,7 @@ const { currentStatus } = useStatusOrder(orderMeta.value?.status)
     left: 0;
     width: 2px;
     height: 100%;
+    transition: background-color 0.3s;
   }
   &:after {
     content: '';
@@ -74,6 +71,7 @@ const { currentStatus } = useStatusOrder(orderMeta.value?.status)
     height: 100%;
     background-color: var(--order-clr);
     opacity: 0.16;
+    transition: background-color 0.3s;
 
     position: absolute;
     top: 0;
@@ -94,6 +92,10 @@ const { currentStatus } = useStatusOrder(orderMeta.value?.status)
     color: var(--order-status-default-text);
     padding: 2px;
     border-radius: var(--reservation-border-radius);
+    transition:
+      background-color 0.3s,
+      color 0.3s,
+      border-color 0.3s;
     &.status-bill {
       background-color: var(--order-status-bill-bg);
       color: var(--order-status-bill-text);

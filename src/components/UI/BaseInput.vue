@@ -12,6 +12,7 @@ const emits = defineEmits(['update:modelValue'])
 input::placeholder {
   font-family: Inter, sans-serif;
   color: var(--input-text-placeholder);
+  transition: color 0.3s;
 }
 .input {
   background-color: var(--input-bg);
@@ -20,5 +21,10 @@ input::placeholder {
   padding: 7px 8px;
   border: var(--input-bd);
   border-radius: var(--input-border-radius);
+  height: 28px;
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    border-color 0.3s;
 }
 </style>

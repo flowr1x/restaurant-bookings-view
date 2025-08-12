@@ -14,6 +14,10 @@
   transition-property: background-color;
   transition-duration: 0.3s;
   font-size: 12px;
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    border-color 0.3s;
 }
 @media screen and (hover: hover) {
   .btn:hover {

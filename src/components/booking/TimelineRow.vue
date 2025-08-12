@@ -25,12 +25,13 @@ const props = defineProps<Props>()
   grid-auto-columns: 80px;
   white-space: nowrap;
   &__cell {
+    transition: color 0.1s;
     color: var(--text-color);
     font-size: 11px;
     line-height: 14px;
     position: sticky;
     left: 0;
-    z-index: 10;
+    z-index: 999;
   }
 
   .booking-cell {
@@ -39,6 +40,7 @@ const props = defineProps<Props>()
   }
 }
 .booking-cell {
+  transition: background-color 0.3s;
   background-color: var(--dark);
 }
 </style>

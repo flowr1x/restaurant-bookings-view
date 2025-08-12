@@ -1,16 +1,11 @@
 <script lang="ts" setup>
-import { defineProps, ref, defineExpose } from 'vue'
+import { defineProps } from 'vue'
 import type { Table } from '@/types'
 
 interface Props {
   tables: Table[]
 }
 const props = defineProps<Props>()
-
-const root = ref<HTMLElement | null>(null);
-defineExpose({
-  root, // expose ref с корневым элементом
-});
 </script>
 <template lang="">
   <div class="table-header booking-table__header" ref="root">
@@ -27,7 +22,6 @@ defineExpose({
 
 <style lang="scss" scoped>
 .table-header {
-  will-change: transform, top;
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 32px;
@@ -35,7 +29,9 @@ defineExpose({
   white-space: nowrap;
   position: sticky;
   top: 0;
-  z-index: 999;
+  z-index: 9999;
+  background-color: var(--dark);
+  transition: background-color 0.3s;
   &__cell {
     padding: 4px;
     overflow: hidden;

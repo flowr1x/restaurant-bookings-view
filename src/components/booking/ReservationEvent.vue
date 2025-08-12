@@ -60,10 +60,6 @@ const { currentStatus } = useStatusReservation(reservationMeta.value?.status)
       backdrop-filter: blur(2px);
       z-index: 999 !important;
     }
-
-    &:hover:after {
-      filter: blur(10px);
-    }
   }
   &:before {
     content: '';
@@ -82,7 +78,6 @@ const { currentStatus } = useStatusReservation(reservationMeta.value?.status)
     height: 100%;
     background-color: var(--reservation-clr);
     opacity: 0.16;
-
     position: absolute;
     top: 0;
     left: 0;

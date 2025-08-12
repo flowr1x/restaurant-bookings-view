@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { useDark, useToggle } from '@vueuse/core'
-import BaseIcon from '@/components/UI/BaseIcon.vue'
 
-const isDark = useDark()
+const isDark = useDark({ disableTransition: false })
 const toggleDark = useToggle(isDark)
 </script>
 <template lang="">
