@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { useDark, useToggle } from '@vueuse/core'
-import MainIcon from '@/components/UI/MainIcon.vue'
+import BaseIcon from '@/components/UI/BaseIcon.vue'
 
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
 </script>
 <template lang="">
   <button class="btn-toggle-dark" :class="{ dark: isDark }" @click="toggleDark()">
-    <MainIcon :name="isDark ? 'Sun' : 'Moon'" />
+    <BaseIcon :name="isDark ? 'Sun' : 'Moon'" />
   </button>
 </template>
 

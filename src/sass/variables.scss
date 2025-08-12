@@ -37,6 +37,16 @@
   --reservation-status-cancel-text: var(--white);
   --booking-border: 1px solid rgba(255, 255, 255, 0.16);
 
+  --order-border-radius: 4px;
+  --order-clr: #7fd7cc;
+  --order-banquet-clr: #7b439e;
+
+  --order-status-default-bg: rgba(255, 255, 255, 0.12);
+  --order-status-default-text: var(--white);
+
+  --order-status-bill-bg: #4ac99b52;
+  --order-status-bill-text: var(--white);
+
   --input-bg: var(--dark);
   --input-text: var(--white);
   --input-text-placeholder: var(--text-color);

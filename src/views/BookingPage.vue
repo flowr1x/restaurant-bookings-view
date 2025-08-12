@@ -9,17 +9,20 @@ onMounted(() => bookingStore.loadData())
 </script>
 
 <template>
-  <BookingControls
-    :selectedDate="bookingStore.selectedDate"
-    :availableDays="bookingStore.availableDaysFormat"
-    :zones="bookingStore.allZones"
-  />
-  <BookingTable
-    v-if="bookingStore.restaurant?.tables"
-    :tables="bookingStore.restaurant.tables"
-    :selectedDate="bookingStore.selectedDate"
-    :openingTime="'11:00'"
-    :closingTime="'23:00'"
-    :activesZone="bookingStore.activeZones"
-  />
+  <BaseLoader v-if="bookingStore.isLoader"></BaseLoader>
+  <div v-else>
+    <BookingControls
+      :selectedDate="bookingStore.selectedDate"
+      :availableDays="bookingStore.availableDaysFormat"
+      :zones="bookingStore.allZones"
+    />
+    <BookingTable
+      v-if="bookingStore.restaurant?.tables"
+      :tables="bookingStore.restaurant.tables"
+      :selectedDate="bookingStore.selectedDate"
+      :openingTime="'11:00'"
+      :closingTime="'23:00'"
+      :activesZone="bookingStore.activeZones"
+    />
+  </div>
 </template>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import BaseButton from './BaseButton.vue'
-import MainIcon from './MainIcon.vue'
+import BaseIcon from './BaseIcon.vue'
 
 type Props = {
   icon: string
@@ -11,7 +11,7 @@ const props = defineProps<Props>()
 
 <template>
   <BaseButton class="btn-icon">
-    <MainIcon :name="props.icon" />
+    <BaseIcon :name="props.icon" />
     <slot>Выйти</slot>
   </BaseButton>
 </template>

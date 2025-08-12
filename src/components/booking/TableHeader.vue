@@ -5,7 +5,6 @@ import type { Table } from '@/types'
 interface Props {
   tables: Table[]
 }
-
 const props = defineProps<Props>()
 </script>
 <template lang="">
@@ -28,8 +27,6 @@ const props = defineProps<Props>()
   grid-template-columns: 32px;
   grid-auto-columns: 80px;
   white-space: nowrap;
-  position: sticky;
-  top: 24px;
   z-index: 999;
   &__cell {
     padding: 4px;

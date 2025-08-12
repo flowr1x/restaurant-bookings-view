@@ -4,7 +4,6 @@ export function getDateLabel(dateStr: string, todayStr: string): AvailableDaysFo
   const date = new Date(dateStr)
   const today = new Date(todayStr)
 
-  // обнуляем время
   today.setHours(0, 0, 0, 0)
   const target = new Date(date)
   target.setHours(0, 0, 0, 0)
@@ -31,11 +30,11 @@ function getDayMonth(date: Date): string {
   return date.toLocaleDateString('ru-RU', {
     day: 'numeric',
     month: 'long',
-  }) // → 4 апреля
+  })
 }
 
 function getWeekday(date: Date): string {
   return date.toLocaleDateString('ru-RU', {
     weekday: 'long',
-  }) // → воскресенье
+  })
 }

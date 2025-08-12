@@ -3,12 +3,12 @@
   <header class="header">
     <div class="container header__container">
       <div class="header__logo">
-        <MainIcon :name="'logo'" class="header__logo-icon" />
+        <BaseIcon :name="'logo'" class="header__logo-icon" />
       </div>
       <div class="header__block">
         <InputGroup>
           <InputGroupAddon>
-            <MainIcon :name="'search'" />
+            <BaseIcon :name="'search'" />
           </InputGroupAddon>
           <BaseInput type="text" placeholder="⌘+Л поиск по имени" />
         </InputGroup>

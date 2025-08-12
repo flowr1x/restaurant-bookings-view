@@ -2,11 +2,11 @@
 import { defineProps, toRef } from 'vue'
 import type { Table, Zone } from '@/types'
 import TableHeader from './TableHeader.vue'
-import ReservationBlock from './ReservationBlock.vue'
+import EventBlock from './EventBlock.vue'
 import TimelineRow from './TimelineRow.vue'
 
 import { useTimescale } from '@/composables/useTimescale'
-import { useReservations } from '@/composables/useReservations'
+import { useEvents } from '@/composables/useEvents'
 
 interface Props {
   tables: Table[]
@@ -19,11 +19,7 @@ interface Props {
 const props = defineProps<Props>()
 
 const timeline = useTimescale(props.openingTime, props.closingTime)
-const { eventFilterCurrentDateAndZone } = useReservations(
-  props.tables,
-  toRef(props, 'selectedDate'),
-  toRef(props, 'activesZone'),
-)
+const { allEvents } = useEvents(props.tables, toRef(props, 'selectedDate'), toRef(props, 'activesZone'))
 </script>
 
 <template>
@@ -34,13 +30,7 @@ const { eventFilterCurrentDateAndZone } = useReservations(
         <!-- Основная таблица -->
         <div class="booking-table__body">
           <!-- Отрисовка бронирований -->
-          <ReservationBlock
-            v-for="reservation in eventFilterCurrentDateAndZone"
-            :key="reservation.id"
-            :reservation
-            :openingTime
-            :closingTime
-          />
+          <EventBlock v-for="event in allEvents" :key="event.id" :event :openingTime :closingTime />
           <!-- Отрисовка сетки -->
           <TimelineRow v-for="time in timeline" :key="time" :tables :time />
         </div>

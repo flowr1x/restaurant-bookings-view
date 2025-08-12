@@ -2,7 +2,7 @@ import type { StatusClasses, ReservationStatus, ReservationStatusInfo } from '@/
 import type { ComputedRef } from 'vue'
 import { computed } from 'vue'
 
-export function useStatus(status: ReservationStatus): {
+export function useStatusReservation(status: ReservationStatus): {
   currentStatus: ComputedRef<ReservationStatusInfo>
 } {
   const statusClasses: StatusClasses = {
