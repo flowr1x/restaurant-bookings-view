@@ -26,7 +26,7 @@
   &__logo {
     color: var(--white);
     height: 14px;
-    width: 92px;
+    flex: 0 0 92px;
     &-icon {
       width: 100%;
       height: 100%;
@@ -36,6 +36,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
   }
   &__block {
     display: flex;

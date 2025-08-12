@@ -12,7 +12,7 @@ const props = defineProps<Props>()
 <template>
   <BaseButton class="btn-icon">
     <BaseIcon :name="props.icon" />
-    <slot>Выйти</slot>
+    <span class="btn-icon-slot"><slot>Выйти</slot></span>
   </BaseButton>
 </template>
 
@@ -21,5 +21,15 @@ const props = defineProps<Props>()
   flex-direction: row;
   gap: 4px;
   border-radius: 4px;
+  @media screen and (max-width: 767px) {
+    & {
+      padding: 4px;
+      height: 24px;
+      width: 24px;
+    }
+    &-slot {
+      display: none;
+    }
+  }
 }
 </style>

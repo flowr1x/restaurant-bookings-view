@@ -1,3 +1,4 @@
+@use './variables.scss';
 body {
   font-family: Inter, sans-serif;
   background-color: var(--dark);
@@ -28,4 +29,17 @@ body {
 .text-11 {
   font-size: 11px;
   line-height: 14px;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  border-radius: 0;
+  background-color: var(--dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--gray);
+  border-radius: 0;
+  border: 0;
 }
