@@ -1,14 +1,19 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue'
+import { defineProps, ref, defineExpose } from 'vue'
 import type { Table } from '@/types'
 
 interface Props {
   tables: Table[]
 }
 const props = defineProps<Props>()
+
+const root = ref<HTMLElement | null>(null);
+defineExpose({
+  root, // expose ref с корневым элементом
+});
 </script>
 <template lang="">
-  <div class="table-header booking-table__header">
+  <div class="table-header booking-table__header" ref="root">
     <div class=""></div>
     <div v-for="table in props.tables" :key="table.id" class="table-header__cell">
       <div class="table-header__top">
@@ -22,11 +27,14 @@ const props = defineProps<Props>()
 
 <style lang="scss" scoped>
 .table-header {
+  will-change: transform, top;
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 32px;
   grid-auto-columns: 80px;
   white-space: nowrap;
+  position: sticky;
+  top: 0;
   z-index: 999;
   &__cell {
     padding: 4px;
