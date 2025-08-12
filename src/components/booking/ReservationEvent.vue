@@ -21,67 +21,28 @@ const reservationMeta = computed(() => {
 const { currentStatus } = useStatusReservation(reservationMeta.value?.status)
 </script>
 <template>
-  <div class="reservation" :style="getReservationStyle(props.event, openingTime, closingTime)">
-    <div class="reservation__id text-semibold text-8">№{{ event.id }}</div>
-    <div class="reservation__number">
+  <div class="event-reservation" :style="getReservationStyle(props.event, openingTime, closingTime)">
+    <div class="event-reservation__id text-8">№{{ event.id }}</div>
+    <div class="event-reservation__number">
       <span class="text-semibold">{{ reservationMeta?.name_for_reservation }}; </span>
       <span class="text-semibold">{{ reservationMeta?.num_people }}</span>
       <span class="text-8">чел</span>
     </div>
-    <div class="text-semibold text-8 reservation__status" :class="currentStatus.selector">{{ currentStatus.text }}</div>
-    <div class="reservation__phone">
-      <BaseIcon :name="'phone'" class="reservation__phone_icon" />{{ reservationMeta?.phone_number }}
+    <div class="text-semibold text-8 event-reservation__status event__status" :class="currentStatus.selector">
+      {{ currentStatus.text }}
     </div>
-    <div class="reservation__time">{{ getTime(event.start) }}-{{ getTime(event.end) }}</div>
+    <div class="event-reservation__phone">
+      <BaseIcon :name="'phone'" class="event-reservation__phone_icon" />{{ reservationMeta?.phone_number }}
+    </div>
+    <div>{{ getTime(event.start) }}-{{ getTime(event.end) }}</div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.reservation {
-  position: absolute;
-  display: block;
-  color: var(--white);
-  z-index: 10;
-  border-radius: var(--reservation-border-radius);
-  padding: 2px 6px;
-  overflow: hidden;
-  &__phone {
-    display: flex;
-    align-items: center;
-    &_icon {
-      flex: 0 0 12px;
-      width: 12px;
-      height: 12px;
-    }
-  }
-  @media screen and (hover: hover) {
-    &:hover {
-      width: max-content !important;
-      backdrop-filter: blur(2px);
-      z-index: 999 !important;
-    }
-  }
-  &:before {
-    content: '';
-    display: block;
-    position: absolute;
-    background-color: var(--reservation-clr);
-    top: 0;
-    left: 0;
-    width: 2px;
-    height: 100%;
-  }
+.event-reservation {
+  &:before,
   &:after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 100%;
     background-color: var(--reservation-clr);
-    opacity: 0.16;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
   }
   &:has(.status-live) {
     &:before {
@@ -91,12 +52,18 @@ const { currentStatus } = useStatusReservation(reservationMeta.value?.status)
       background-color: var(--reservation-live-clr);
     }
   }
+  &__phone {
+    display: flex;
+    align-items: center;
+    &_icon {
+      flex: 0 0 12px;
+      height: 12px;
+      color: var(--white);
+    }
+  }
   &__status {
-    display: inline-block;
     background-color: var(--reservation-status-default-bg);
     color: var(--reservation-status-default-text);
-    padding: 2px;
-    border-radius: var(--reservation-border-radius);
     &.status-request {
       background-color: var(--reservation-status-awaiting-bg);
       color: var(--reservation-status-awaiting-text);

@@ -20,78 +20,37 @@ const orderMeta = computed(() => {
 const { currentStatus } = useStatusOrder(orderMeta.value?.status)
 </script>
 <template>
-  <div class="reservation" :style="getReservationStyle(props.event, openingTime, closingTime)">
-    <div class="reservation__id text-semibold text-8">
+  <div class="event-order" :style="getReservationStyle(props.event, openingTime, closingTime)">
+    <div class="text-semibold">
       <span v-if="currentStatus.text === 'Банкет'">Банкет</span>
       <span v-else>Заказ</span>
     </div>
     <div
       v-if="currentStatus.text != 'Банкет'"
-      class="text-semibold text-8 reservation__status"
+      class="text-semibold event-order__status event__status text-8"
       :class="currentStatus.selector"
     >
       {{ currentStatus.text }}
     </div>
-    <div class="reservation__time">{{ getTime(event.start) }}-{{ getTime(event.end) }}</div>
+    <div>{{ getTime(event.start) }}-{{ getTime(event.end) }}</div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.reservation {
-  position: absolute;
-  display: block;
-  color: var(--white);
-  z-index: 10;
-  border-radius: var(--order-border-radius);
-  padding: 2px 6px;
-  overflow: hidden;
-  transition: color 0.3s;
-  @media screen and (hover: hover) {
-    &:hover {
-      width: max-content !important;
-      backdrop-filter: blur(2px);
-      z-index: 999 !important;
-    }
-  }
-  &:before {
-    content: '';
-    display: block;
-    position: absolute;
-    background-color: var(--order-clr);
-    top: 0;
-    left: 0;
-    width: 2px;
-    height: 100%;
-    transition: background-color 0.3s;
-  }
+.event-order {
+  &:before,
   &:after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 100%;
     background-color: var(--order-clr);
-    opacity: 0.16;
-    transition: background-color 0.3s;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
   }
   &:has(.status-banquet) {
-    &:before {
-      background-color: var(--order-banquet-clr);
-    }
+    &:before,
     &:after {
       background-color: var(--order-banquet-clr);
     }
   }
   &__status {
-    display: inline-block;
     background-color: var(--order-status-default-bg);
     color: var(--order-status-default-text);
-    padding: 2px;
-    border-radius: var(--reservation-border-radius);
     transition:
       background-color 0.3s,
       color 0.3s,
