@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, computed } from 'vue'
-import type { Order, TableEvent } from '@/types'
+import type { Order, TableEvent, OrderStatus } from '@/types'
 import { getReservationStyle, getTime } from '@/utils/getReservationStyle'
 import { useStatusOrder } from '@/composables/useStatusOrder'
 
@@ -17,7 +17,7 @@ const orderMeta = computed(() => {
   if (!isOrder.value) return null
   return props.event.meta as Order
 })
-const { currentStatus } = useStatusOrder(orderMeta.value?.status)
+const { currentStatus } = useStatusOrder(orderMeta.value?.status as OrderStatus)
 </script>
 <template>
   <div class="event-order" :style="getReservationStyle(props.event, openingTime, closingTime)">

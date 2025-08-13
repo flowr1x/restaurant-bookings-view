@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineProps } from 'vue'
-const icons = import.meta.glob('@/components/icons/*.vue', { eager: true })
+const icons = import.meta.glob<{ default: any }>('@/components/icons/*.vue', { eager: true })
 
 type Props = {
   name: string

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
-import type { Reservation, TableEvent } from '@/types'
+import type { Reservation, TableEvent, ReservationStatus } from '@/types'
 import { getReservationStyle, getTime } from '@/utils/getReservationStyle'
 import { useStatusReservation } from '@/composables/useStatusReservation'
 import { computed } from 'vue'
@@ -18,7 +18,7 @@ const reservationMeta = computed(() => {
   return props.event.meta as Reservation
 })
 
-const { currentStatus } = useStatusReservation(reservationMeta.value?.status)
+const { currentStatus } = useStatusReservation(reservationMeta.value?.status as ReservationStatus)
 </script>
 <template>
   <div class="event-reservation" :style="getReservationStyle(props.event, openingTime, closingTime)">
